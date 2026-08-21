@@ -1,24 +1,3 @@
-# ============================================================================
-# AIRI PITB Internship Task 1 - CCTV Accident Detection (YOLOv8)
-# STEP SCRIPT 3 of 3: Optional Phase 11 Demo
-# Accident Detection -> Incident Record -> Simulated Dispatch Interface
-#
-# This is a PROTOTYPE, exactly as scoped:
-#   - Detects accidents in an uploaded/selected image using best.pt
-#   - Generates an incident record: detection result, confidence, timestamp,
-#     camera ID
-#   - Looks up the camera's location from a mock camera-location database
-#     (camera_id -> lat/lon), simulating what a real deployment would have
-#   - Displays the generated alert on a simple "dispatch interface" screen
-#   - Does NOT contact any real ambulance/hospital/emergency API. A real
-#     deployment would forward this payload to an authorized emergency
-#     services API - that integration is explicitly future work.
-#
-# HOW TO RUN (locally or in Colab with a tunnel):
-#   pip install streamlit ultralytics
-#   streamlit run 03_alert_demo_app.py -- --weights /path/to/best.pt
-# ============================================================================
-
 import json
 import random
 import sys
@@ -31,11 +10,10 @@ from PIL import Image
 
 st.set_page_config(page_title="RescueBot CCTV Accident Alert - Prototype", layout="wide")
 
-# ---------------------------------------------------------------------------
 # Mock camera-location database
 # In a real deployment this would be a proper database keyed by camera_id,
 # populated when each CCTV unit is installed. Here it's hardcoded for the demo.
-# ---------------------------------------------------------------------------
+
 CAMERA_LOCATION_DB = {
     "CAM_001": {"name": "Mall Road & 2nd Ave Intersection", "lat": 31.5204, "lon": 74.3587},
     "CAM_002": {"name": "Highway Exit 12", "lat": 31.5497, "lon": 74.3436},
